@@ -11,6 +11,14 @@ export const Logo = () => {
                 src="/dark-logo.svg"
                 width="45"
                 height="45"
+                className="dark:hidden"
+            />
+            <Image 
+                alt="Memotivate logo"
+                src="/logo.svg"
+                width="45"
+                height="45"
+                className="hidden dark:block"
             />
             <p className={cn("font-semibold")}>Memotivate</p>
         </div>

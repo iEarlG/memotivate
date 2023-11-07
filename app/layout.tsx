@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google';
 
 import './globals.css';
 import { ThemeProvider } from '@/providers/ThemeProvider';
+import { ConvexClientProvider } from '@/providers/ConvexProvider';
 
 const inter = Poppins({
   subsets: ['latin'],
@@ -36,15 +37,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-          storageKey="memotivate-theme"
-        >
-          {children}
-        </ThemeProvider>
+        <ConvexClientProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+            storageKey="memotivate-theme"
+          >
+            {children}
+          </ThemeProvider>
+        </ConvexClientProvider>
       </body>
     </html>
   );

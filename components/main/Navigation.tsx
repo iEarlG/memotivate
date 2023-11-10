@@ -1,6 +1,6 @@
 "use client"
 
-import { ElementRef, useRef, useState } from "react";
+import { ElementRef, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useMediaQuery } from "usehooks-ts";
 
@@ -18,6 +18,22 @@ export const Navigation = () => {
 
     const [isResetting, setIsResetting] = useState(false);
     const [isCollapsed, setIsCollapsed] = useState(isMobile);
+
+    useEffect(() => {
+      if (isMobile) {
+        collapseSidebar();
+      } else {
+        resetSidebarWidth();
+      }
+    }, [isMobile]);
+
+    useEffect(() => {
+      if (isMobile) {
+        collapseSidebar();
+      }
+    }, [pathname, isMobile]);
+    
+    
 
     const handleMouseDown = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         event.preventDefault();
@@ -48,6 +64,32 @@ export const Navigation = () => {
         document.removeEventListener("mouseup", handleMouseUp);
     };
 
+    const resetSidebarWidth = () => {
+        if (sidebarRef.current && navbarRef.current) {
+            setIsCollapsed(false);
+            setIsResetting(true);
+
+            sidebarRef.current.style.width = isMobile ? "100%" : "240px";
+            navbarRef.current.style.setProperty("left", isMobile ? "100%" : "240px");
+            navbarRef.current.style.setProperty("width", isMobile ? "0" : "calc(100% - 240px)");
+
+            setTimeout(() => setIsResetting(false), 300);
+        }
+    };
+
+    const collapseSidebar = () => {
+        if (sidebarRef.current && navbarRef.current) {
+            setIsCollapsed(true);
+            setIsResetting(true);
+
+            sidebarRef.current.style.width = "0";
+            navbarRef.current.style.setProperty("left", "0");
+            navbarRef.current.style.setProperty("width", "100%");
+
+            setTimeout(() => setIsResetting(false), 300);
+        }
+    };
+
     return (
        <>
         <aside
@@ -58,7 +100,8 @@ export const Navigation = () => {
             )}
         >
             <div 
-                role="button" 
+                role="button"
+                onClick={collapseSidebar}
                 className={cn(`absolute h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-300 
                 dark:hover:bg-neutral-600 top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition`,
                     isMobile && "opacity-100",
@@ -74,7 +117,7 @@ export const Navigation = () => {
             </div>
             <div 
                 onMouseDown={handleMouseDown}
-                onClick={() => {}}
+                onClick={resetSidebarWidth}
                 className="opacity-0 group-hover/sidebar:opacity-100 absolute h-full w-1 bg-primary/10 right-0 top-0 cursor-ew-resize transition" 
             />
         </aside>
@@ -87,7 +130,11 @@ export const Navigation = () => {
         >
             <nav className=" w-full bg-transparent px-3 py-2">
                 {isCollapsed && (
-                    <Menu role="button" className="h-6 w-6 text-muted-foreground" />
+                    <Menu 
+                        role="button"
+                        onClick={resetSidebarWidth}
+                        className="h-6 w-6 text-muted-foreground" 
+                    />
                 )}
             </nav>
         </div>

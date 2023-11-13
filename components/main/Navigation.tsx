@@ -109,7 +109,7 @@ export const Navigation = () => {
                     isMobile && "opacity-100",
             )}
             >
-                <ChevronLeft className="h-6 w-6" />
+                <ChevronLeft className="h-5 w-5" />
             </div>
             <div>
                 <UserItem />

@@ -1,3 +1,4 @@
+import { Toaster } from "sonner";
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 
@@ -45,6 +46,7 @@ export default function RootLayout({
             disableTransitionOnChange
             storageKey="memotivate-theme"
           >
+            <Toaster position="bottom-center" />
             {children}
           </ThemeProvider>
         </ConvexClientProvider>

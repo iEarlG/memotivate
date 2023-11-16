@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useMediaQuery } from "usehooks-ts";
 import { useMutation, useQuery } from "convex/react";
 
-import { ChevronLeft, Menu, PlusCircle, Search } from "lucide-react";
+import { ChevronLeft, Menu, PlusCircle, Search, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { api } from "@/convex/_generated/api";
 
@@ -133,6 +133,11 @@ export const Navigation = () => {
                     label="Search Notes"
                     icon={Search}
                     isSearch
+                    onClick={() => {}}
+                />
+                <Items 
+                    label="Settings"
+                    icon={Settings}
                     onClick={() => {}}
                 />
                 <Items 

@@ -5,11 +5,12 @@ import { usePathname } from "next/navigation";
 import { useMediaQuery } from "usehooks-ts";
 import { useQuery } from "convex/react";
 
-import { ChevronLeft, Menu } from "lucide-react";
+import { ChevronLeft, Menu, PlusCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-
 import { api } from "@/convex/_generated/api";
+
 import { UserItem } from "@/components/main/UserItem";
+import { Items } from "@/components/main/Items";
 
 export const Navigation = () => {
     const pathname = usePathname();
@@ -116,6 +117,11 @@ export const Navigation = () => {
             </div>
             <div>
                 <UserItem />
+                <Items 
+                    label="New Page"
+                    icon={PlusCircle}
+                    onClick={() => {}}
+                />
             </div>
             <div className="mt-4">
                 {documents?.map((document) => (

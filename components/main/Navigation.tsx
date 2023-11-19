@@ -3,7 +3,8 @@
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useMediaQuery } from "usehooks-ts";
-import { useMutation, useQuery } from "convex/react";
+import { useMutation } from "convex/react";
+import { toast } from "sonner";
 
 import { ChevronLeft, Menu, PlusCircle, Search, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -11,14 +12,13 @@ import { api } from "@/convex/_generated/api";
 
 import { UserItem } from "@/components/main/UserItem";
 import { Items } from "@/components/main/Items";
-import { toast } from "sonner";
+import { DocumentList } from "@/components/main/DocumentList";
 
 export const Navigation = () => {
     const pathname = usePathname();
 
     const isResizing = useRef(false);
     const isMobile = useMediaQuery("(max-width: 768px)");
-    const documents = useQuery(api.documents.get);
     const create = useMutation(api.documents.create);
 
     const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -147,12 +147,7 @@ export const Navigation = () => {
                 />
             </div>
             <div className="mt-4">
-                {documents?.map((document) => (
-                    <p key={document._id}
-                    >
-                        {document.title}
-                    </p>
-                ))}
+               <DocumentList />
             </div>
             <div 
                 onMouseDown={handleMouseDown}

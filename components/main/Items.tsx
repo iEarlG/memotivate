@@ -1,6 +1,6 @@
 "use client"
 
-import { ChevronDown, ChevronRight, LucideIcon } from "lucide-react";
+import { ChevronDown, ChevronRight, LucideIcon, Plus } from "lucide-react";
 
 import { Id } from "@/convex/_generated/dataModel";
 import { cn } from "@/lib/utils";
@@ -32,6 +32,12 @@ export const Items = ({
     icon: Icon,
     onClick
 }: ItemsProps) => {
+    const handleExpand = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        event.stopPropagation();
+
+        onExpand?.();
+    };
+
     const ChevronIcon = expanded ? ChevronDown : ChevronRight;
 
     return (
@@ -49,7 +55,7 @@ export const Items = ({
                 <div 
                     role="button" 
                     className="h-full rounded-sm hover:bg-neutral-300 dark:bg-neutral-600 mr-1"
-                    onClick={() => {}}
+                    onClick={handleExpand}
                 >
                     <ChevronIcon
                         className="h-4 w-4 shrink-0 text-muted-foreground/50"
@@ -69,6 +75,13 @@ export const Items = ({
                 text-[10px] font-medium text-muted-foreground opacity-100">
                     <span className="text-sm">Ctrl</span>K
                 </kbd>
+            )}
+            {!!id && (
+                <div className="flex items-center gap-x-2 ml-auto">
+                    <div className="h-full group opacity-0 group-hover:opacity-100 ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600">
+                        <Plus className="h-4 w-4 text-muted-foreground" />
+                    </div>
+                </div>
             )}
         </div>
     );

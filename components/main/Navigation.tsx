@@ -148,6 +148,11 @@ export const Navigation = () => {
             </div>
             <div className="mt-4">
                <DocumentList />
+               <Items
+                    label="Add new note"
+                    icon={PlusCircle}
+                    onClick={handleCreate}
+                />
             </div>
             <div 
                 onMouseDown={handleMouseDown}

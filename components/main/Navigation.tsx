@@ -6,13 +6,15 @@ import { useMediaQuery } from "usehooks-ts";
 import { useMutation } from "convex/react";
 import { toast } from "sonner";
 
-import { ChevronLeft, Menu, PlusCircle, Search, Settings } from "lucide-react";
+import { Archive, ChevronLeft, Menu, PlusCircle, Search, Settings, Trash } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { api } from "@/convex/_generated/api";
 
 import { UserItem } from "@/components/main/UserItem";
 import { Items } from "@/components/main/Items";
 import { DocumentList } from "@/components/main/DocumentList";
+import { Popover, PopoverTrigger } from "../ui/popover";
+import { PopoverContent } from "@radix-ui/react-popover";
 
 export const Navigation = () => {
     const pathname = usePathname();
@@ -145,7 +147,17 @@ export const Navigation = () => {
                     icon={PlusCircle}
                     onClick={handleCreate}
                 />
-                
+                <Popover>
+                    <PopoverTrigger className="w-full mt-4">
+                        <Items 
+                            label="Archive"
+                            icon={Archive}
+                        />
+                    </PopoverTrigger>
+                    <PopoverContent side={isMobile ? "bottom" : "right"} className="w-72 p-0">
+                        <p>Trash can</p>
+                    </PopoverContent>
+                </Popover>
             </div>
             <div className="mt-4">
                <DocumentList />

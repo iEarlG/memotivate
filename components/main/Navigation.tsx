@@ -145,6 +145,7 @@ export const Navigation = () => {
                     icon={PlusCircle}
                     onClick={handleCreate}
                 />
+                
             </div>
             <div className="mt-4">
                <DocumentList />

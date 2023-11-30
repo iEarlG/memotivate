@@ -5,8 +5,11 @@ import { useParams, useRouter } from "next/navigation";
 import { useMutation, useQuery } from "convex/react";
 import { toast } from "sonner";
 
+import { Search } from "lucide-react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
+
+import { Input } from "@/components/ui/input";
 
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 
@@ -21,9 +24,7 @@ export const TrashBox = () => {
     const remove = useMutation(api.documents.removeDocs);
 
     const filteredDocuments = documents?.filter((document) => {
-        document.title
-        .toLowerCase()
-        .includes(search.toLowerCase())
+        return document.title.toLowerCase().includes(search.toLowerCase())
     });
 
     const onClick = (documentId: string) => {
@@ -66,8 +67,31 @@ export const TrashBox = () => {
     };
 
     return (
-        <div>
-            TrashBox
+        <div className="text-sm">
+            <div className="flex items-center gap-x-1 p-2">
+                <Search className="h-4 w-4" />
+                <Input 
+                    value={search}
+                    onChange={(event) => setSearch(event.target.value)}
+                    className="h-7 px-2 focus-visible:ring-transparent bg-secondary"
+                    placeholder="Search by title"
+                />
+            </div>
+            <div className="mt-2 px-1 pb-1">
+                <p className="hidden last:block text-sm text-center text-muted-foreground pb-2">No documents or notes were found.</p>
+                {filteredDocuments?.map((document) => (
+                    <div 
+                        role="button"
+                        key={document._id}
+                        onClick={() => onClick(document._id)}
+                        className="w-full flex items-center justify-between text-primary hover:bg-primary/5 text-sm rounded-sm"
+                    >
+                        <span>
+                            {document.title}
+                        </span>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 };

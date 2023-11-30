@@ -9,12 +9,12 @@ import { toast } from "sonner";
 import { Archive, ChevronLeft, Menu, PlusCircle, Search, Settings, Trash } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { api } from "@/convex/_generated/api";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 
 import { UserItem } from "@/components/main/UserItem";
 import { Items } from "@/components/main/Items";
 import { DocumentList } from "@/components/main/DocumentList";
-import { Popover, PopoverTrigger } from "../ui/popover";
-import { PopoverContent } from "@radix-ui/react-popover";
+import { TrashBox } from "@/components/main/TrashBox";
 
 export const Navigation = () => {
     const pathname = usePathname();
@@ -155,7 +155,9 @@ export const Navigation = () => {
                         />
                     </PopoverTrigger>
                     <PopoverContent side={isMobile ? "bottom" : "right"} className="w-72 p-0">
-                        <p>Trash can</p>
+                        <TrashBox 
+                            
+                        />
                     </PopoverContent>
                 </Popover>
             </div>

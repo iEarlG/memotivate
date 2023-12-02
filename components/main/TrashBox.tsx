@@ -12,6 +12,7 @@ import { Id } from "@/convex/_generated/dataModel";
 import { Input } from "@/components/ui/input";
 
 import { LoadingSpinner } from "@/components/LoadingSpinner";
+import { ConfirmModal } from "../modals/ConfirmModal";
 
 export const TrashBox = () => {
     const [search, setSearch] = useState("");
@@ -97,9 +98,11 @@ export const TrashBox = () => {
                             >
                                 <Undo className="h-4 w-4 text-muted-foreground" />
                             </div>
-                            <div role="button" className="rounded-sm hover:bg-neutral-200 p-2">
-                                <Trash className="h-4 w-4 text-muted-foreground" />
-                            </div>
+                            <ConfirmModal onConfirm={() => onRemove(document._id)}>
+                                <div role="button" className="rounded-sm hover:bg-neutral-200 p-2">
+                                    <Trash className="h-4 w-4 text-muted-foreground" />
+                                </div>
+                            </ConfirmModal>
                         </div>
                     </div>
                 ))}

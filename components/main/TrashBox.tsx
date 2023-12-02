@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useMutation, useQuery } from "convex/react";
 import { toast } from "sonner";
 
-import { Search } from "lucide-react";
+import { Search, Trash, Undo } from "lucide-react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 
@@ -86,9 +86,21 @@ export const TrashBox = () => {
                         onClick={() => onClick(document._id)}
                         className="w-full flex items-center justify-between text-primary hover:bg-primary/5 text-sm rounded-sm"
                     >
-                        <span>
+                        <span className="truncate-12 pl-2">
                             {document.title}
                         </span>
+                        <div className="flex items-center">
+                            <div 
+                                role="button"
+                                className="rounded-sm hover:bg-neutral-200 p-2"
+                                onClick={(e) => onRestore(e, document._id)}
+                            >
+                                <Undo className="h-4 w-4 text-muted-foreground" />
+                            </div>
+                            <div role="button" className="rounded-sm hover:bg-neutral-200 p-2">
+                                <Trash className="h-4 w-4 text-muted-foreground" />
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>

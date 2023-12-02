@@ -44,20 +44,19 @@ export const TrashBox = () => {
         });
     };
 
-    const onRemove = (documentId: Id<"documents">) => {
-
-        const promise = remove({id: documentId});
-
+    const onRemove = (documentId: Id<"documents">,) => {
+        const promise = remove({ id: documentId });
+    
         toast.promise(promise, {
-            loading: "Deleting documents",
-            success: "Document deleted!",
-            error: "Failed to delete document."
+          loading: "Deleting note...",
+          success: "Note deleted!",
+          error:" Failed to delete note."
         });
-
+    
         if (params.documentId === documentId) {
-            router.push("/documents");
+          router.push("/documents");
         }
-    };
+      };
 
     if (documents === undefined) {
         return (

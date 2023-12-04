@@ -15,11 +15,13 @@ import { UserItem } from "@/components/main/UserItem";
 import { Items } from "@/components/main/Items";
 import { DocumentList } from "@/components/main/DocumentList";
 import { TrashBox } from "@/components/main/TrashBox";
+import { useSearch } from "@/hooks/useSearch";
 
 export const Navigation = () => {
     const pathname = usePathname();
-
     const isResizing = useRef(false);
+    const search = useSearch();
+
     const isMobile = useMediaQuery("(max-width: 768px)");
     const create = useMutation(api.documents.create);
 
@@ -135,7 +137,7 @@ export const Navigation = () => {
                     label="Search Notes"
                     icon={Search}
                     isSearch
-                    onClick={() => {}}
+                    onClick={search.onOpen}
                 />
                 <Items 
                     label="Settings"

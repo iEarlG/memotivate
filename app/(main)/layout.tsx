@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { Navigation } from "@/components/main/Navigation";
+import { SearchCommand } from "@/components/search/SearchCommand";
 
 const LayoutMain = ({
     children
@@ -29,6 +30,7 @@ const LayoutMain = ({
         <div className="h-full flex dark:bg-[#0F0F0F]">
             <Navigation />
             <main className="flex-1 h-full overflow-y-auto">
+                <SearchCommand />
                 {children}
             </main>
         </div>

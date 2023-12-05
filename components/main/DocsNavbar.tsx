@@ -8,7 +8,6 @@ import { Menu } from "lucide-react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 
-import { LoadingSpinner } from "@/components/LoadingSpinner";
 import { DocsTitle } from "@/components/main/DocsTitle";
 
 interface DocsNavbarProps {
@@ -28,9 +27,9 @@ export const DocsNavbar = ({
 
     if (document === undefined) {
         return (
-            <div>
-                <LoadingSpinner />
-            </div> 
+            <nav className="w-full flex items-center px-3 py-2 bg-background dark:bg-[#0F0F0F]">
+                <DocsTitle.Skeleton />
+            </nav>
         )
     };
 

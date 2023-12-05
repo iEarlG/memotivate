@@ -8,6 +8,7 @@ import { api } from "@/convex/_generated/api";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "../ui/skeleton";
 
 interface DocsTitleProps {
     initialData: Doc<"documents">;
@@ -71,7 +72,7 @@ export const DocsTitle = ({
                     className="h-auto p-1"
                     onClick={enableInput}
                 >
-                    <span className="truncate">
+                    <span className="truncate text-[16px]">
                         {initialData.title}
                     </span>
                 </Button>
@@ -79,3 +80,9 @@ export const DocsTitle = ({
         </div>
     )
 };
+
+DocsTitle.Skeleton = function TitleSkeleton () {
+    return (
+        <Skeleton className="h-5 w-20 rounded-md" />
+    )
+}

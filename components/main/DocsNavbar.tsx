@@ -3,10 +3,13 @@
 import { useQuery } from "convex/react";
 import { useParams } from "next/navigation";
 
+import { Menu } from "lucide-react";
+
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
-import { LoadingSpinner } from "../LoadingSpinner";
-import { Menu } from "lucide-react";
+
+import { LoadingSpinner } from "@/components/LoadingSpinner";
+import { DocsTitle } from "@/components/main/DocsTitle";
 
 interface DocsNavbarProps {
     isCollapsed: boolean;
@@ -46,7 +49,7 @@ export const DocsNavbar = ({
                     />
                 )}
                 <div className="flex items-center justify-between w-full">
-                    Navbar
+                    <DocsTitle initialData={document} />
                 </div>
             </nav>
         </>

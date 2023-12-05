@@ -6,7 +6,7 @@ import { useMediaQuery } from "usehooks-ts";
 import { useMutation } from "convex/react";
 import { toast } from "sonner";
 
-import { Archive, ChevronLeft, Menu, PlusCircle, Search, Settings, Trash } from "lucide-react";
+import { Archive, ChevronLeft, Menu, Plus, PlusCircle, Search, Settings, Trash } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { api } from "@/convex/_generated/api";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
@@ -169,7 +169,7 @@ export const Navigation = () => {
                <DocumentList />
                <Items
                     label="Add new note"
-                    icon={PlusCircle}
+                    icon={Plus}
                     onClick={handleCreate}
                 />
             </div>

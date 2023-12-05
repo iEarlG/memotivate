@@ -3,8 +3,10 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 
 import './globals.css';
+
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import { ConvexClientProvider } from '@/providers/ConvexProvider';
+import { ModalProvider } from "@/providers/ModalProvider";
 
 const inter = Poppins({
   subsets: ['latin'],
@@ -47,6 +49,7 @@ export default function RootLayout({
             storageKey="memotivate-theme"
           >
             <Toaster position="bottom-center" />
+            <ModalProvider />
             {children}
           </ThemeProvider>
         </ConvexClientProvider>

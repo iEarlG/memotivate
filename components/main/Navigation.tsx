@@ -6,7 +6,7 @@ import { useMediaQuery } from "usehooks-ts";
 import { useMutation } from "convex/react";
 import { toast } from "sonner";
 
-import { Archive, ChevronLeft, Menu, Plus, PlusCircle, Search, Settings, Trash } from "lucide-react";
+import { Archive, ChevronLeft, Menu, Plus, PlusCircle, Search, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { api } from "@/convex/_generated/api";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
@@ -153,6 +153,14 @@ export const Navigation = () => {
                     icon={PlusCircle}
                     onClick={handleCreate}
                 />
+            </div>
+            <div className="mt-4">
+               <DocumentList />
+               <Items
+                    label="Add new note"
+                    icon={Plus}
+                    onClick={handleCreate}
+                />
                 <Popover>
                     <PopoverTrigger className="w-full mt-4">
                         <Items 
@@ -164,14 +172,6 @@ export const Navigation = () => {
                         <TrashBox />
                     </PopoverContent>
                 </Popover>
-            </div>
-            <div className="mt-4">
-               <DocumentList />
-               <Items
-                    label="Add new note"
-                    icon={Plus}
-                    onClick={handleCreate}
-                />
             </div>
             <div 
                 onMouseDown={handleMouseDown}

@@ -9,6 +9,7 @@ import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 
 import { DocsTitle } from "@/components/main/DocsTitle";
+import { Banner } from "@/components/Banner";
 
 interface DocsNavbarProps {
     isCollapsed: boolean;
@@ -51,6 +52,12 @@ export const DocsNavbar = ({
                     <DocsTitle initialData={document} />
                 </div>
             </nav>
+            {document.isArchived && (
+                <Banner 
+                    documentId={document._id}
+                    initialData={document}
+                />
+            )}
         </>
     )
 };

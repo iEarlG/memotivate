@@ -9,6 +9,7 @@ import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 
 import { DocsTitle } from "@/components/main/DocsTitle";
+import { DocsMenu } from "@/components/main/DocsMenu";
 import { Banner } from "@/components/Banner";
 
 interface DocsNavbarProps {
@@ -28,8 +29,11 @@ export const DocsNavbar = ({
 
     if (document === undefined) {
         return (
-            <nav className="w-full flex items-center px-3 py-2 bg-background dark:bg-[#0F0F0F]">
+            <nav className="w-full flex items-center justify-between px-3 py-2 bg-background dark:bg-[#0F0F0F]">
                 <DocsTitle.Skeleton />
+                <div className="flex items-center gap-x-2">
+                    <DocsMenu.Skeleton />
+                </div>
             </nav>
         )
     };
@@ -50,6 +54,9 @@ export const DocsNavbar = ({
                 )}
                 <div className="flex items-center justify-between w-full">
                     <DocsTitle initialData={document} />
+                    <div className="flex items-center gap-x-2">
+                        <DocsMenu documentId={document._id} />
+                    </div>
                 </div>
             </nav>
             {document.isArchived && (

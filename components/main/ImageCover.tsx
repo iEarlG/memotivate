@@ -1,11 +1,16 @@
 "use client"
 
+import { useMutation } from "convex/react";
+import { useParams } from "next/navigation";
 import Image from "next/image";
 
+import { useCoverImage } from "@/hooks/useCoverImage";
+import { Id } from "@/convex/_generated/dataModel";
+import { api } from "@/convex/_generated/api";
+import { ImagePlus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
-import { ImagePlus, X } from "lucide-react";
 
 interface ImageCoverProps {
     url?: string;
@@ -16,6 +21,15 @@ export const ImageCover = ({
     url,
     preview
 }: ImageCoverProps) => {
+    const params = useParams();
+    const coverImage = useCoverImage();
+    const removeCoverImage = useMutation(api.documents.removeCoverImage);
+
+    const onRemoveImage = () => {
+        removeCoverImage({
+            id: params.documentId as Id<"documents">,
+        });
+    };
 
     return (
         <div className={cn("relative w-full h-[35vh] group",
@@ -36,7 +50,7 @@ export const ImageCover = ({
                         size="sm"
                         variant="secondary"
                         className="text-muted-foreground text-xs"
-                        onClick={() => {}}
+                        onClick={coverImage.onOpen}
                     >
                         <ImagePlus className="h-4 w-4 mr-2" />
                         Change Cover
@@ -45,7 +59,7 @@ export const ImageCover = ({
                         size="sm"
                         variant="secondary"
                         className="text-muted-foreground text-xs"
-                        onClick={() => {}}
+                        onClick={onRemoveImage}
                     >
                         <X className="h-4 w-4 mr-2" />
                         Remove

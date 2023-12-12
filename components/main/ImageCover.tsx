@@ -8,6 +8,7 @@ import { useCoverImage } from "@/hooks/useCoverImage";
 import { Id } from "@/convex/_generated/dataModel";
 import { api } from "@/convex/_generated/api";
 import { ImagePlus, X } from "lucide-react";
+import { useEdgeStore } from "@/lib/edgestore";
 import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
@@ -21,11 +22,18 @@ export const ImageCover = ({
     url,
     preview
 }: ImageCoverProps) => {
+    const { edgestore } = useEdgeStore();
     const params = useParams();
     const coverImage = useCoverImage();
     const removeCoverImage = useMutation(api.documents.removeCoverImage);
 
-    const onRemoveImage = () => {
+    const onRemoveImage = async () => {
+        if (url) {
+            await edgestore.publicFiles.delete({
+                url: url,
+            });
+        }
+
         removeCoverImage({
             id: params.documentId as Id<"documents">,
         });
@@ -50,7 +58,7 @@ export const ImageCover = ({
                         size="sm"
                         variant="secondary"
                         className="text-muted-foreground text-xs"
-                        onClick={coverImage.onOpen}
+                        onClick={() => coverImage.onReplace(url)}
                     >
                         <ImagePlus className="h-4 w-4 mr-2" />
                         Change Cover

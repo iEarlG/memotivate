@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { useMutation } from "convex/react";
 import { useUser } from "@clerk/clerk-react";
 
-import { ChevronDown, ChevronRight, LucideIcon, MoreHorizontal, Plus, Trash } from "lucide-react";
+import { Archive, ChevronDown, ChevronRight, LucideIcon, MoreHorizontal, Plus } from "lucide-react";
 import { Id } from "@/convex/_generated/dataModel";
 import { api } from "@/convex/_generated/api";
 import { cn } from "@/lib/utils";
@@ -40,6 +40,7 @@ export const Items = ({
 }: ItemsProps) => {
     const { user } = useUser();
     const router = useRouter();
+
     const create = useMutation(api.documents.create);
     const archive = useMutation(api.documents.archive);
 
@@ -58,7 +59,7 @@ export const Items = ({
                 if (!expanded) {
                     onExpand?.();
                 }
-                //router.push(`/documents/${documentId}`)
+                router.push(`/documents/${documentId}`)
             });
 
         toast.promise(promise, {
@@ -73,7 +74,8 @@ export const Items = ({
 
         if (!id) return;
 
-        const promise = archive({id});
+        const promise = archive({id})
+            .then(() => router.push("/documents"));
 
         toast.promise(promise, {
             loading: "Archiving document",
@@ -135,8 +137,8 @@ export const Items = ({
                             forceMount
                         >
                             <DropdownMenuItem onClick={onArchive}>
-                                <Trash className="h-4 w-4 mr-2" />
-                                Delete
+                                <Archive className="h-4 w-4 mr-2" />
+                                Archive
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <div className="text-xs text-muted-foreground p-2">

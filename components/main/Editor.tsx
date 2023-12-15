@@ -14,7 +14,7 @@ interface EditorProps {
     onChange: (value: string) => void;
 };
 
-export const Editor = ({
+const Editor = ({
     initialContent,
     editable,
     onChange
@@ -46,3 +46,5 @@ export const Editor = ({
         />
     )
 };
+
+export default Editor;

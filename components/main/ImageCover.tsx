@@ -12,6 +12,7 @@ import { useEdgeStore } from "@/lib/edgestore";
 import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface ImageCoverProps {
     url?: string;
@@ -75,5 +76,11 @@ export const ImageCover = ({
                 </div>
             )}
         </div>
+    )
+};
+
+ImageCover.Skeleton = function ImageCoverSkeleton() {
+    return (
+        <Skeleton className="w-full h-[12vh]" />
     )
 };

@@ -8,9 +8,10 @@ import { Menu } from "lucide-react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 
+import { Banner } from "@/components/Banner";
 import { DocsTitle } from "@/components/main/DocsTitle";
 import { DocsMenu } from "@/components/main/DocsMenu";
-import { Banner } from "@/components/Banner";
+import { Publish } from "@/components/main/Publish";
 
 interface DocsNavbarProps {
     isCollapsed: boolean;
@@ -55,6 +56,7 @@ export const DocsNavbar = ({
                 <div className="flex items-center justify-between w-full">
                     <DocsTitle initialData={document} />
                     <div className="flex items-center gap-x-2">
+                        <Publish initialData={document} />
                         <DocsMenu documentId={document._id} />
                     </div>
                 </div>

@@ -94,3 +94,5 @@ Live website will be found [here](https://memotivate.vercel.app/)
 Website updates, code changes, README changes will be on track if not busy
 
 #
+
+ALL IS UP TO DATE!!

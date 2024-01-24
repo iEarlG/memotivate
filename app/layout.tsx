@@ -1,5 +1,6 @@
 import { Toaster } from "sonner";
 import type { Metadata } from 'next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Poppins } from 'next/font/google';
 
 import './globals.css';
@@ -53,6 +54,7 @@ export default function RootLayout({
               <Toaster position="bottom-center" />
               <ModalProvider />
               {children}
+              <SpeedInsights />
             </ThemeProvider>
           </EdgeStoreProvider>
         </ConvexClientProvider>
